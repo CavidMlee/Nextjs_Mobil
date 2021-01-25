@@ -1,11 +1,11 @@
 import React from 'react';
 import Head from 'next/head'
+import { NextPage } from 'next'
 import styles from '../src/styles/Home.module.css';
-import {Login} from 'containers'
+import { Home } from 'containers'
 
- const  Home:React.FC = () => {
+const Index: NextPage = () => {
 
-   const token:boolean = false
 
   return (
     <div className={styles.container}>
@@ -13,11 +13,9 @@ import {Login} from 'containers'
         <title>Create Next App</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      {
-        token ? <div>Home list</div> : <Login />
-      }
+      <Home />
     </div>
   )
 }
 
-export default Home;
+export default Index;

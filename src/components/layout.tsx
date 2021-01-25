@@ -1,4 +1,5 @@
 import React, { Fragment, ReactChild } from 'react';
+import { css } from '@emotion/css';
 
 type Props = {
     children: JSX.Element
@@ -7,10 +8,20 @@ type Props = {
 export const Layout: React.FC<Props> = ({ children }: any) => {
     return (
         <Fragment>
-            <header>Header</header>
+            <header className={myStyle}>Header</header>
             <main>{children}</main>
-            <footer>Footer</footer>
+            <footer className={myStyle}>Footer</footer>
         </Fragment>
 
     )
 }
+
+const myStyle = css`
+  height:10vh;
+  width:100vw;
+  background-color:#1d1c1d;
+  color:white;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+`
