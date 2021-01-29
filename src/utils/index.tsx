@@ -1,1 +1,1 @@
-export {cookies} from './cookies'
+export {cookies} from './cookies';

@@ -7,7 +7,9 @@ import {
   QueryClient,
   QueryClientProvider,
 } from 'react-query';
-import { ReactQueryDevtools } from 'react-query/devtools'
+import { ReactQueryDevtools } from 'react-query/devtools';
+import { ThemeProvider } from 'contexts';
+import 'react-responsive-modal/styles.css';
 
 
 // Create a client
@@ -17,10 +19,14 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <Fragment>
       <Head title='Phones' />
+      
       <QueryClientProvider client={queryClient}>
         <ReactQueryDevtools initialIsOpen={false} />
-        <Component {...pageProps} />
+        <ThemeProvider>
+          <Component {...pageProps} />
+        </ThemeProvider>
       </QueryClientProvider>
+      
     </Fragment>
   )
 }

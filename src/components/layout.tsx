@@ -1,14 +1,26 @@
-import React, { Fragment, ReactChild } from 'react';
+import React, { Fragment, ReactChild, useContext } from 'react';
 import { css } from '@emotion/css';
+import { ThemeContext } from 'contexts';
 
 type Props = {
     children: JSX.Element
 }
 
+
 export const Layout: React.FC<Props> = ({ children }: any) => {
+
+    const { dark, setDark }:any = useContext(ThemeContext)
+    
     return (
         <Fragment>
-            <header className={myStyle}>Header</header>
+            <header className={myStyle}>
+                <div>
+                    Header
+                </div>
+                {/* <button onChange={()=>setDark(true)}>Dark</button>
+                <button onChange={()=>setDark(false)}>Light</button>
+                <span>{dark?'dark':'light'}</span> */}
+            </header>
             <main>{children}</main>
             <footer className={myStyle}>Footer</footer>
         </Fragment>

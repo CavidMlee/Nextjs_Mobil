@@ -34,8 +34,6 @@ export const Login: React.FC = () => {
             cookies.set(cookieAuthKey,accessToken)
             cookies.set('exTN',expiredToken)
 
-            Router.push('/')
-
             console.log('success: ', res)
 
         },
