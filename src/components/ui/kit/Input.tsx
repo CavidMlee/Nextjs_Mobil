@@ -1,34 +1,37 @@
 import React from 'react';
 import styled from '@emotion/styled';
 
-interface IProps {
+
+type TProps = { 
     disabled?: boolean;
     placeholder?: string;
     type?: string,
     label?:string,
-    rest?: any
-}
+    [rest:string]: any;
+};
+type Ref = HTMLInputElement;
 
-export const Input: React.FC<IProps> = ({
-    disabled = false,
-    placeholder,
-    type = 'text',
-    label,
-    ...rest
-}) => {
+export const Input= React.forwardRef<Ref, TProps>((props, ref) => {
+    const {
+        disabled = false,
+        placeholder,
+        type = 'text',
+        label,
+        ...rest
+    } = props
     return (
         <StyledContainer>
             <label>{label}</label>
-            <input disabled={disabled} placeholder={placeholder} type={type} {...rest} />
+            <input disabled={disabled} placeholder={placeholder} type={type} ref={ref}  {...rest} />
         </StyledContainer>
     )
-}
+})
 
-type TProps = {
+type TPropsStyle = {
     theme?: any
 }
 
-const StyledContainer = styled.div<TProps>`
+const StyledContainer = styled.div<TPropsStyle>`
 display:flex;
 flex-direction:column;
 input{
@@ -44,7 +47,7 @@ input{
     font-size: 18px;
     line-height: 21px;
     padding:0 12px;
-    color:${props =>props.theme.colors.inputtext};
+    color:${props =>props.theme.colors.textColor};
     &:focus{
         outline:none;
     }
@@ -56,7 +59,7 @@ label{
     font-weight: normal;
     font-size: 14px;
     line-height: 16px;
-    color: #000000;
+    color:${props =>props.theme.colors.textColor};
     opacity: 0.5;
     }
 `

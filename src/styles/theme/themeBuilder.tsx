@@ -4,17 +4,19 @@ const lightTheme: Object = {
         modalBackground: '#ffffff',
         primaryColor:'#4254F3',
         buttonText:'#FFFFFF',
-        inputText:'#000000'
+        textColor:'#000000',
+        socialButtonBackground:'#F2F6FA'
     }
 }
 
 const darkTheme: Object = {
     colors: {
         backgroundColor: 'black',
-        modalBackground:'black',
-        primaryColor:'#b6bcf8',
+        modalBackground:'#1f1e1e',
+        primaryColor:'#6b75e4',
         buttonText:'#292929',
-        inputText:'#f1f1f1'
+        textColor:'#dfdfdf',
+        socialButtonBackground:'#b5c2cf'
     }
 }
 

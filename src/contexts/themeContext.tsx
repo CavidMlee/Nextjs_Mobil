@@ -10,10 +10,10 @@ interface IProps {
 export const ThemeContext = createContext({});
 
 export const ThemeProvider: React.FC<IProps> = ({ children }) => {
-    const [dark, setDark] = useState<boolean>(true)
+    const [dark, setDark] = useState<boolean>(false)
 
     return (
-        <ThemeContext.Provider value={{ dark, setDark }} >
+        <ThemeContext.Provider value={[ dark, setDark ]} >
             <Theme theme={dark ? darkTheme : lightTheme}>
                 {children}
             </Theme>

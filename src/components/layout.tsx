@@ -9,7 +9,7 @@ type Props = {
 
 export const Layout: React.FC<Props> = ({ children }: any) => {
 
-    const { dark, setDark }:any = useContext(ThemeContext)
+    const [ dark, setDark ]:any = useContext(ThemeContext)
     
     return (
         <Fragment>
@@ -17,9 +17,9 @@ export const Layout: React.FC<Props> = ({ children }: any) => {
                 <div>
                     Header
                 </div>
-                {/* <button onChange={()=>setDark(true)}>Dark</button>
-                <button onChange={()=>setDark(false)}>Light</button>
-                <span>{dark?'dark':'light'}</span> */}
+                <button onClick={()=>setDark(true)}>Dark</button>
+                <button onClick={()=>setDark(false)}>Light</button>
+                <span>Theme:{dark?'dark':'light'}</span>
             </header>
             <main>{children}</main>
             <footer className={myStyle}>Footer</footer>

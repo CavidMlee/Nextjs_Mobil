@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useForm } from "react-hook-form";
 import { Layout } from 'components';
+import { Input, Button } from 'components/ui/kit'
 import { cookies } from 'utils';
 import { cookieAuthKey } from 'api';
 import Router from 'next/router';
@@ -37,7 +38,7 @@ export const Register: React.FC = () => {
         onSuccess: (res) => {
             const { description } = res
             alert(description)
-            Router.push('/login')
+            // Router.push('/login')
 
             console.log('success: ', res)
 
@@ -55,37 +56,34 @@ export const Register: React.FC = () => {
       }
 
     return (
-        <Layout>
-            <div className={myStyle}>
-                <h1>Register</h1>
+            <div>
                 {registerMutation.isLoading && <div>Loading....</div>}
 
                 <form onSubmit={handleSubmit(onSubmit)} style={{ display: 'flex', flexDirection: 'column' }}>
 
-                    <input name="username" defaultValue="test" ref={register} />
+                    <Input placeholder='User name' label='Adınız' name="username" defaultValue="test" ref={register} />      
                     {errors.username && <span style={{ color: 'red' }}>This field is required</span>}
 
-                    <input name="password" placeholder='password' ref={register({ required: true })} />
-                    {errors.password && <span style={{ color: 'red' }}>This field is required</span>}
-
-                    <input name="phoneNumber" placeholder='phoneNumber' ref={register({ required: true,valueAsNumber: true, })} />
-                    {errors.phoneNumber && <span style={{ color: 'red' }}>This field is required</span>}
-
-                    <input name="email" placeholder='email' ref={register({ required: true })} />
+                    <Input placeholder='Elektron poçt' label='Elektron poçt' name="email" ref={register} />      
                     {errors.email && <span style={{ color: 'red' }}>This field is required</span>}
 
-                    <input name="confirmPassword" placeholder='confirmPassword' ref={register({ required: true })} />
+                    <Input placeholder='Password' type='password' label='Şifrə' name="password" ref={register({ required: true })} />
+                    {errors.password && <span style={{ color: 'red' }}>This field is required</span>}
+
+                    <Input placeholder='Phone Number' label='Mobil telefon' name="phoneNumber" ref={register({ required: true })} />
+                    {errors.phoneNumber && <span style={{ color: 'red' }}>This field is required</span>}
+
+                    <Input  label='Təkrar şifrə' type='password' name="confirmPassword" ref={register({ required: true })} />
                     {errors.confirmPassword && <span style={{ color: 'red' }}>This field is required</span>}
 
-                    <input type="submit" />
+                    <Button title='Qeydiyyat' type="submit" />
                 </form>
-                <ReCAPTCHA
+                {/* <ReCAPTCHA
                     sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
                     onChange={onChange}
                     theme='dark'
-                />
+                /> */}
             </div>
-        </Layout>
     )
 }
 
