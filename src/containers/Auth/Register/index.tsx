@@ -29,7 +29,11 @@ type Inputs = {
 // Create a client
 const queryClient = new QueryClient()
 
-export const Register: React.FC = () => {
+interface IProps{
+    openOtpModal:()=>void
+}
+
+export const Register: React.FC<IProps> = ({openOtpModal}) => {
     const { register, handleSubmit, watch, errors } = useForm<Inputs>();
 
 
@@ -37,7 +41,7 @@ export const Register: React.FC = () => {
     const registerMutation = useMutation(registerClient, {
         onSuccess: (res) => {
             const { description } = res
-            alert(description)
+            openOtpModal()
             // Router.push('/login')
 
             console.log('success: ', res)
@@ -70,7 +74,7 @@ export const Register: React.FC = () => {
                     <Input placeholder='Password' type='password' label='Şifrə' name="password" ref={register({ required: true })} />
                     {errors.password && <span style={{ color: 'red' }}>This field is required</span>}
 
-                    <Input placeholder='Phone Number' label='Mobil telefon' name="phoneNumber" ref={register({ required: true })} />
+                    <Input placeholder='Phone Number' label='Mobil telefon' name="phoneNumber"  ref={register({ required: true })} />
                     {errors.phoneNumber && <span style={{ color: 'red' }}>This field is required</span>}
 
                     <Input  label='Təkrar şifrə' type='password' name="confirmPassword" ref={register({ required: true })} />

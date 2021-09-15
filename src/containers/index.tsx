@@ -1,3 +1,2 @@
-export {Login} from './Auth/Login';
-export {Register} from './Auth/Register';
+export {Login,Otp,Register} from './Auth'
 export {Home} from './Home';

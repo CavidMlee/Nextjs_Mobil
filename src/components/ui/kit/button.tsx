@@ -53,11 +53,12 @@ export const SocialAuthButton:React.FC<ISocialProps> = ({
 
 type TButtonProps={
     theme?:any,
+    disabled?:boolean
 }
 
 const StyledButton = styled.button<TButtonProps>`
     border: none;
-    background-color: ${props => props.theme.colors.primaryColor};
+    background-color: ${props => props.disabled ? props.theme.colors.buttonDisable : props.theme.colors.primaryColor};
     border-radius: 5px;
     padding:0 30px;
     height:45px;
@@ -65,7 +66,7 @@ const StyledButton = styled.button<TButtonProps>`
     display: flex;
     align-items:center;
     justify-content:center;
-    cursor: pointer;
+    cursor: ${props => props.disabled ? 'no-drop' : 'pointer'}; 
     &:focus{
         outline:none;
     }

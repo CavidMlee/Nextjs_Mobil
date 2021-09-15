@@ -1,62 +1,78 @@
 import React, { useEffect, useState, useRef } from 'react';
 import Link from 'next/link'
 import { css } from '@emotion/css'
-import { Layout, Authcard } from 'components';
-import { useCountdownTimer } from 'hooks';
+import { Layout, Authcard,ItemCard } from 'components';
 import { Modal, Button, Input } from 'components/ui/kit';
-import {Login,Register} from 'containers'
+import { Login, Register, Otp } from 'containers'
 
 import styled from '@emotion/styled';
 
 export const Home: React.FC = () => {
 
-    const { timerSeconds, timerMinutes, setStart } = useCountdownTimer(1)
 
-    const [openModal, setOpenModal] = useState(false);
-    const [openRegisterModal,setOpenRegisterModal] = useState(false)
 
-    const onOpenModal = () => setOpenModal(true);
-    const onCloseModal = () => setOpenModal(false);
+    const [openLoginModal, setOpenLoginModal] = useState(false);
+    const [openRegisterModal, setOpenRegisterModal] = useState(false)
+    const [openOtpModal, setOpenOtpModal] = useState(false);
+
+
+    //LoginModal
+    const onOpenLoginModal = () => setOpenLoginModal(true);
+    const onCloseLoginModal = () => setOpenLoginModal(false);
+    //RegisterModal
     const onCloseRegisterModal = () => setOpenRegisterModal(false)
+    //OtpModal
+    const onOpenOtpModal =()=>{setOpenOtpModal(true), setOpenRegisterModal(false)}
+    const onCloseOtpModal = () => setOpenOtpModal(false)
 
     const myRef = React.useRef(null);
 
-    const ChangeModal =()=>{
+    const ChangeModal = () => {
         setOpenRegisterModal(!openRegisterModal)
-        setOpenModal(!openModal)
+        setOpenLoginModal(!openLoginModal)
     }
+
+    
 
     return (
         <Layout>
             <div className={myStyle}>
                 <div>
-                    <button onClick={onOpenModal}>Open modal</button>
-                    <Modal isOpen={openModal} onCloseModal={onCloseModal}>
-                        <Authcard 
-                        title='Daxil ol' 
-                        headerText='Profildən elanlarınızı izləyin, yeniləyin və redaktə edin'
-                        footerText='Hesabınız yoxdur?'
-                        footerFuncText='Qeydiyyat'
-                        footerFunc={ChangeModal}
+                    <button onClick={onOpenLoginModal}>Open modal</button>
+                    <Modal isOpen={openLoginModal} onCloseModal={onCloseLoginModal}>
+                        <Authcard
+                            title='Daxil ol'
+                            headerText='Profildən elanlarınızı izləyin, yeniləyin və redaktə edin'
+                            footerText='Hesabınız yoxdur?'
+                            footerFuncText='Qeydiyyat'
+                            footerFunc={ChangeModal}
                         >
                             <Login />
                         </Authcard>
                     </Modal>
                     <Modal isOpen={openRegisterModal} onCloseModal={onCloseRegisterModal}>
-                        <Authcard 
-                        title='Qeydiyyat' 
-                        headerText='Profildən elanlarınızı izləyin, yeniləyin və redaktə edin'
-                        footerText='Hesabım artıq var.'
-                        footerFuncText='Daxil ol'
-                        footerFunc={ChangeModal}
+                        <Authcard
+                            title='Qeydiyyat'
+                            headerText='Profildən elanlarınızı izləyin, yeniləyin və redaktə edin'
+                            footerText='Hesabım artıq var.'
+                            footerFuncText='Daxil ol'
+                            footerFunc={ChangeModal}
                         >
-                            <Register />
+                            <Register openOtpModal={onOpenOtpModal} />
+                        </Authcard>
+                    </Modal>
+
+                    <Modal isOpen={openOtpModal} onCloseModal={onCloseOtpModal}>
+                        <Authcard
+                            title='OTP kod'
+                            headerText='Qeydiyyatı bitirmək üçün OTP kodunu göndərin'
+                        >
+                            <Otp />
                         </Authcard>
                     </Modal>
                 </div>
-                <button onClick={() => setStart(true)}>Start</button>
                 <h1>Home</h1>
-                <span>minute: {timerMinutes} second: {timerSeconds}</span>
+                <ItemCard />
             </div>
         </Layout>
     )
